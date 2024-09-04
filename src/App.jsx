@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import TrafficLight from './components/TrafficLight';
 import TrafficButtons from './components/TrafficButtons';
+import { TrafficLightContext } from './context/TrafficLightContext';
 import './App.css';
 
 const App = () => {
-    const [light, setLight] = useState({red: false, orange: false, green: true});
+    const { state, dispatch } = useContext(TrafficLightContext);
 
     const handleStopClick = () => {
-        if (!light.green) return;
-        setLight({red: false, orange: true, green: false});
-
+        if (!state.green) return;
+        dispatch({ type: 'PREPARE_TO_STOP' });
         setTimeout(() => {
-            setLight({red: true, orange: false, green: false});
+            dispatch({ type: 'STOP' });
         }, 5000);
     };
 
     const handleGoClick = () => {
-        if (!light.red) return;
-        setLight({red: true, orange: true, green: false});
-
+        if (!state.red) return;
+        dispatch({ type: 'PREPARE_TO_GO' });
         setTimeout(() => {
-            setLight({red: false, orange: false, green: true});
+            dispatch({ type: 'GO' });
         }, 5000);
     };
 
     return (
         <div className="container">
             <div className="light-container">
-                <TrafficLight color="red" isOn={light.red} />
-                <TrafficLight color="orange" isOn={light.orange} />
-                <TrafficLight color="green" isOn={light.green} />
+                <TrafficLight color="red" isOn={state.red} />
+                <TrafficLight color="orange" isOn={state.orange} />
+                <TrafficLight color="green" isOn={state.green} />
             </div>
             <div className="control-container">
                 <div className="title">Traffic Lights App</div>

@@ -1,0 +1,18 @@
+/* Button styling */
+.TrafficButton_button {
+  width: 300px;
+  height: 60px;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #3068a4;
+  color: #fff;
+  border: none;
+  border-radius: 55px;
+  cursor:cell;
+}
+
+.TrafficButton_button:hover {
+  background-color: #0056b3;
+}

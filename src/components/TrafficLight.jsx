@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+
 
 const TrafficLight = ({ color, isOn }) => {
     let className;
